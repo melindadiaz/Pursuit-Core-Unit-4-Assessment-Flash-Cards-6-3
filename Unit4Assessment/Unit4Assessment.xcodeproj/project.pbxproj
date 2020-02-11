@@ -3,13 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4DDF715A23F2FED0001C156C /* FlashTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF715923F2FED0001C156C /* FlashTabBarController.swift */; };
 		4DDF715C23F2FF10001C156C /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF715B23F2FF10001C156C /* CardsView.swift */; };
 		4DDF715F23F3016B001C156C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF715E23F3016B001C156C /* CardsViewController.swift */; };
+		4DDF716123F30263001C156C /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF716023F30263001C156C /* CreateViewController.swift */; };
+		4DDF716323F30274001C156C /* SearchCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF716223F30274001C156C /* SearchCardsViewController.swift */; };
+		4DDF716523F30290001C156C /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF716423F30290001C156C /* CreateView.swift */; };
+		4DDF716723F302A7001C156C /* SearchCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF716623F302A7001C156C /* SearchCardsView.swift */; };
+		4DDF716A23F303E8001C156C /* DataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 4DDF716923F303E8001C156C /* DataPersistence */; };
+		4DDF716D23F3040C001C156C /* NetworkHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 4DDF716C23F3040C001C156C /* NetworkHelper */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579023A023F2EE3B000AA216 /* Assets.xcassets */; };
@@ -31,6 +37,10 @@
 		4DDF715923F2FED0001C156C /* FlashTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashTabBarController.swift; path = Unit4Assessment/FlashTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		4DDF715B23F2FF10001C156C /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardsView.swift; path = Controllers/CardsView.swift; sourceTree = SOURCE_ROOT; };
 		4DDF715E23F3016B001C156C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = SOURCE_ROOT; };
+		4DDF716023F30263001C156C /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateViewController.swift; path = Views/CreateViewController.swift; sourceTree = SOURCE_ROOT; };
+		4DDF716223F30274001C156C /* SearchCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsViewController.swift; sourceTree = "<group>"; };
+		4DDF716423F30290001C156C /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateView.swift; path = Controllers/CreateView.swift; sourceTree = SOURCE_ROOT; };
+		4DDF716623F302A7001C156C /* SearchCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsView.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DDF716A23F303E8001C156C /* DataPersistence in Frameworks */,
+				4DDF716D23F3040C001C156C /* NetworkHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +75,8 @@
 		4DDF715323F2FDCD001C156C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DDF716223F30274001C156C /* SearchCardsViewController.swift */,
+				4DDF716023F30263001C156C /* CreateViewController.swift */,
 				4DDF715E23F3016B001C156C /* CardsViewController.swift */,
 				4DDF715923F2FED0001C156C /* FlashTabBarController.swift */,
 			);
@@ -72,6 +86,8 @@
 		4DDF715423F2FDDF001C156C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4DDF716623F302A7001C156C /* SearchCardsView.swift */,
+				4DDF716423F30290001C156C /* CreateView.swift */,
 				4DDF715B23F2FF10001C156C /* CardsView.swift */,
 			);
 			path = Views;
@@ -174,6 +190,10 @@
 			dependencies = (
 			);
 			name = Unit4Assessment;
+			packageProductDependencies = (
+				4DDF716923F303E8001C156C /* DataPersistence */,
+				4DDF716C23F3040C001C156C /* NetworkHelper */,
+			);
 			productName = Unit4Assessment;
 			productReference = 5790239423F2EE39000AA216 /* Unit4Assessment.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +244,10 @@
 				Base,
 			);
 			mainGroup = 5790238B23F2EE39000AA216;
+			packageReferences = (
+				4DDF716823F303E8001C156C /* XCRemoteSwiftPackageReference "DataPersistence" */,
+				4DDF716B23F3040C001C156C /* XCRemoteSwiftPackageReference "NetworkHelperSPM" */,
+			);
 			productRefGroup = 5790239523F2EE39000AA216 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -260,8 +284,12 @@
 			files = (
 				4DDF715A23F2FED0001C156C /* FlashTabBarController.swift in Sources */,
 				4DDF715C23F2FF10001C156C /* CardsView.swift in Sources */,
+				4DDF716523F30290001C156C /* CreateView.swift in Sources */,
+				4DDF716123F30263001C156C /* CreateViewController.swift in Sources */,
 				4DDF715F23F3016B001C156C /* CardsViewController.swift in Sources */,
 				5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */,
+				4DDF716323F30274001C156C /* SearchCardsViewController.swift in Sources */,
+				4DDF716723F302A7001C156C /* SearchCardsView.swift in Sources */,
 				5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,6 +551,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4DDF716823F303E8001C156C /* XCRemoteSwiftPackageReference "DataPersistence" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/DataPersistence";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+		4DDF716B23F3040C001C156C /* XCRemoteSwiftPackageReference "NetworkHelperSPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/NetworkHelperSPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4DDF716923F303E8001C156C /* DataPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DDF716823F303E8001C156C /* XCRemoteSwiftPackageReference "DataPersistence" */;
+			productName = DataPersistence;
+		};
+		4DDF716C23F3040C001C156C /* NetworkHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DDF716B23F3040C001C156C /* XCRemoteSwiftPackageReference "NetworkHelperSPM" */;
+			productName = NetworkHelper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5790238C23F2EE39000AA216 /* Project object */;
 }
