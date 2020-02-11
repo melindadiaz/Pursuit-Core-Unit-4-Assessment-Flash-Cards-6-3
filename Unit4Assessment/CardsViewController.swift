@@ -39,20 +39,19 @@ class CardsViewController: UIViewController {
         cardsView.collectionView.register(CardsCollectionViewCell.self, forCellWithReuseIdentifier: "cardsCollectionViewCell")
         cardsView.collectionView.dataSource = self
         cardsView.collectionView.delegate = self
+      
         fetchSavedFlashCards()
     }
     
     //TODO: Create a fetchFlashCards func & Delegate Extension!!
     private func fetchSavedFlashCards() {
         do {
-            myFlashCards = try dataPersistence.loadItems() ?? FlashCards.getCards()
+            myFlashCards = try dataPersistence.loadItems()
         } catch {
             showAlert(title: "Error", message: "Could not load cards!")
             print("Cannot load flashcards \(error)")
         }
     }
-    
-    
 }
 
 extension CardsViewController: UICollectionViewDataSource {
@@ -68,9 +67,24 @@ extension CardsViewController: UICollectionViewDataSource {
         //let myFlashCard = FlashCards[indexPath.row]
         
         //TODO: Configure cell func goes here once created, Finish step 4 of delegate here and call it
-       // cell.configureCell(for: myFlashCard)
+       //cell.configureCell(for: myFlashCard)
         cell.backgroundColor = .white
+        //cell.delegate = self
         return cell
+    }
+}
+
+extension CardsViewController: DataPersistenceDelegate {
+    //Its listening if an item gets saved then this function gets calledd
+    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        print("item was saved")
+        //if you want to see what you did here
+       fetchSavedFlashCards()
+    }
+    //its listening to changes in deletion
+    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+         fetchSavedFlashCards()
+        print("item was deleted, THIS IS FOR TEST PURPOSES ONLY")
     }
 }
 

@@ -22,6 +22,9 @@ class CreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray
+        createdView.flashCardAnswer.delegate = self
+        createdView.flashCardDetailOne.delegate = self
+        createdView.flashCardDetailTwo.delegate = self
         navigationItem.title = "Create Custom Flashcards"
           navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveCreatedFlashCardButtonPressed(_:)))
     }
@@ -37,3 +40,13 @@ class CreateViewController: UIViewController {
        }
 
 }
+
+extension CreateViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //TODO: Should I put data persistence here??
+        //Lets Hope this gets rid of the keyboard
+        textField.resignFirstResponder()
+    }
+}
+
+

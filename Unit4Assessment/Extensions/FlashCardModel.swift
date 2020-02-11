@@ -41,8 +41,6 @@ extension FlashCards {
         } catch {
             fatalError("failed to load contents \(error)")
         }
-        
-        
         return flashcards
     }
 }

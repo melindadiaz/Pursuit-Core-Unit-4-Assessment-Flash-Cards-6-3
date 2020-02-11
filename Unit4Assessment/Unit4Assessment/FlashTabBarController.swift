@@ -12,7 +12,7 @@ import DataPersistence
 
 class FlashTabBarController: UITabBarController {
     
-    //TODO: Put an instance of data persistence
+    private var dataPersistence = DataPersistence<FlashCards>(filename: "savedFlashCards.plist")
     
     private lazy var cardsVC: CardsViewController = {
         let vc = CardsViewController()
