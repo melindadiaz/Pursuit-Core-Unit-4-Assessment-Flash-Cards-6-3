@@ -23,6 +23,7 @@
 		4DDF717723F32C70001C156C /* FlashCardAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF717623F32C70001C156C /* FlashCardAPIClient.swift */; };
 		4DDF717923F3350F001C156C /* FlashCardLocalJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF717823F3350F001C156C /* FlashCardLocalJSON.swift */; };
 		4DDF717B23F3370B001C156C /* flashCards.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DDF717A23F3370B001C156C /* flashCards.json */; };
+		4DDF717E23F34589001C156C /* FlashCardsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF717D23F34589001C156C /* FlashCardsDetailViewController.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579023A023F2EE3B000AA216 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		4DDF717623F32C70001C156C /* FlashCardAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashCardAPIClient.swift; path = Unit4Assessment/Model/FlashCardAPIClient.swift; sourceTree = SOURCE_ROOT; };
 		4DDF717823F3350F001C156C /* FlashCardLocalJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardLocalJSON.swift; sourceTree = "<group>"; };
 		4DDF717A23F3370B001C156C /* flashCards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = flashCards.json; sourceTree = "<group>"; };
+		4DDF717D23F34589001C156C /* FlashCardsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashCardsDetailViewController.swift; path = Cells/FlashCardsDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		4DDF715323F2FDCD001C156C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DDF717D23F34589001C156C /* FlashCardsDetailViewController.swift */,
 				4DDF716223F30274001C156C /* SearchCardsViewController.swift */,
 				4DDF716023F30263001C156C /* CreateViewController.swift */,
 				4DDF715E23F3016B001C156C /* CardsViewController.swift */,
@@ -316,6 +319,7 @@
 				5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */,
 				4DDF716323F30274001C156C /* SearchCardsViewController.swift in Sources */,
 				4DDF717523F322BD001C156C /* FlashCardModel.swift in Sources */,
+				4DDF717E23F34589001C156C /* FlashCardsDetailViewController.swift in Sources */,
 				4DDF716723F302A7001C156C /* SearchCardsView.swift in Sources */,
 				5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */,
 				4DDF717923F3350F001C156C /* FlashCardLocalJSON.swift in Sources */,

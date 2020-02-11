@@ -7,24 +7,33 @@
 //
 
 import UIKit
+import DataPersistence
 
 class CreateViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    public var createFlashcards: FlashCards?
+    public var dataPersistance: DataPersistence<FlashCards>!
+    private let createdView = CreateView()
+    
+    override func loadView() {
+        view = createdView
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemGray
+        navigationItem.title = "Create Custom Flashcards"
+          navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveCreatedFlashCardButtonPressed(_:)))
     }
-    */
+    
+    @objc func saveCreatedFlashCardButtonPressed(_ sender: UIBarButtonItem) {
+           guard let flashCard = createFlashcards else { return }
+           do {
+            try dataPersistance.createItem(flashCard)
+            showAlert(title: "Saved", message: "You successfully saved your custom FlashCard! Find this in your FlashCard tab below")
+           } catch {
+               print("error saving flashCard: \(flashCard)")
+           }
+       }
 
 }

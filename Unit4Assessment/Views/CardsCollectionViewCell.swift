@@ -14,6 +14,8 @@ import UIKit
 class CardsCollectionViewCell: UICollectionViewCell {
     
     
+    private var currentFlashCards: Cards!
+    
     private lazy var longPressedGesture : UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
         //TODO:      // gesture.addTarget(self, action: #selector(didLongPress(_:)))
@@ -120,7 +122,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
             flashCardDetailTextFieldOne.topAnchor.constraint(equalTo: moreButton.bottomAnchor),
             flashCardDetailTextFieldOne.leadingAnchor.constraint(equalTo: leadingAnchor),
             flashCardDetailTextFieldOne.trailingAnchor.constraint(equalTo: trailingAnchor),
-            flashCardDetailTextFieldOne.heightAnchor.constraint(equalToConstant: 60)
+            flashCardDetailTextFieldOne.heightAnchor.constraint(equalToConstant: 100)
             //TODO: Doublecheck the height of the textfields
             
         ])
@@ -136,11 +138,15 @@ class CardsCollectionViewCell: UICollectionViewCell {
             flashCardDetailTextFieldTwo.topAnchor.constraint(equalTo: flashCardDetailTextFieldOne.bottomAnchor, constant: 8),
             flashCardDetailTextFieldTwo.leadingAnchor.constraint(equalTo: leadingAnchor),
             flashCardDetailTextFieldTwo.trailingAnchor.constraint(equalTo: trailingAnchor),
-            flashCardDetailTextFieldTwo.heightAnchor.constraint(equalToConstant: 60)
+            flashCardDetailTextFieldTwo.heightAnchor.constraint(equalToConstant: 100)
             //TODO: Doublecheck the height of the textfields
             
         ])
         
     }
-    //TODO: Make a configureCell func
+    
+    public func configureCell(for savedCards: Cards) {
+          currentFlashCards = savedCards
+        flashCardAnswerTitle.text = currentFlashCards.cardTitle
+      }
 }
