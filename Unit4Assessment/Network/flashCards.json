@@ -1,0 +1,419 @@
+[
+    {
+        "id": "1",
+        "quizTitle": "What is the difference between Synchronous & Asynchronous task",
+        "facts": [
+        "Synchronous: waits until the task have completed",
+        "Asynchronous: completes a task in the background and can notify you when complete"
+        ]
+    },
+    {
+        "id": "2",
+        "quizTitle": "What is Enum or Enumerations",
+        "facts": [
+        "contains a group of related values",
+        "enumerations define a finite number of states, and can bundle associated values with each individual state, you can use them to model the state of your app and its internal processes"
+        ]
+    },
+    {
+        "id": "3",
+        "quizTitle": "What’s the difference between the frame and the bounds",
+        "facts": [
+        "The bounds of a UIView is the rectangle, expressed as a location (x,y) and size (width,height) relative to its own coordinate system (0,0)",
+        "The frame of a UIView is the rectangle, expressed as a location (x,y) and size (width,height) relative to the superview it is contained within"
+        ]
+    },
+    {
+        "id": "4",
+        "quizTitle": "Quick Sort",
+        "facts": [
+        "Uses divide and conquer and splits the array into three parts based on a pivot variable.",
+        "Picks an element as pivot and partitions the given array around the picked pivot"
+        ]
+    },
+    {
+        "id": "5",
+        "quizTitle": "What is Singleton Pattern?",
+        "facts": [
+        "The Singleton design pattern ensures that only one instance exists for a given class and that there’s a global access point to that instance.",
+        "It usually uses lazy loading to create the single instance when it’s needed the first time."
+        ]
+    },
+    {
+        "id": "6",
+        "quizTitle": "Explain MVC",
+        "facts": [
+        "Models — responsible for the domain data or a data access layer which manipulates the data, think of ‘Person’ or ‘PersonDataProvider’ classes. Views — responsible for the presentation layer (GUI), for iOS environment think of everything starting with ‘UI’ prefix.",
+        "Controller/Presenter/ViewModel — the glue or the mediator between the Model and the View, in general responsible for altering the Model by reacting to the user’s actions performed on the View and updating the View with changes from the Model."
+        ]
+    },
+    {
+        "id": "7",
+        "quizTitle": "Explain MVVM",
+        "facts": [
+        "UIKit independent representation of your View and its state. The View Model invokes changes in the Model and updates itself with the updated Model, and since we have a binding between the View and the View Model, the first is updated accordingly.",
+        "Your view model will actually take in your model, and it can format the information that’s going to be displayed on your view. There is a more known framework called RxSwift. It contains RxCocoa, which are reactive extensions for Cocoa and CocoaTouch."
+        ]
+    },
+    {
+        "id": "8",
+        "quizTitle": "What is the Swift main advantage ? ",
+        "facts": [
+        "Optional Types, which make applications crash-resistant. Built-in error handling. Closures",
+        "Much faster compared to other languages. Type-safe language. Supports pattern matching"
+        ]
+    },
+    {
+        "id": "9",
+        "quizTitle": "Explain generics in Swift?",
+        "facts": [
+        "Generics create code that does not get specific about underlying data types. ",
+        "Generics allow us to know what type it is going to contain. Generics also provides optimization for our code."
+        ]
+    },
+    {
+        "id": "10",
+        "quizTitle": "How to pass data between view controllers?",
+        "facts": [
+        "Segue, in prepareForSegue method",
+        "Delegate and Setting variable directly"
+        ]
+    },
+    {
+        "id": "11",
+        "quizTitle": "What is Concurrency?",
+        "facts": [
+        "Concurrency is dividing up the execution paths of your program so that they are possibly running at the same time.",
+        "The common terminology: process, thread, multithreading, and others. Terminology"
+        ]
+    },
+    {
+        "id": "12",
+        "quizTitle": "Grand Central Dispatch (GCD)",
+        "facts": [
+        "GCD is a library that provides a low-level and object-based API to run tasks concurrently while managing threads behind the scenes",
+        "Dispatch Queues, A dispatch queue is responsible for executing a task in the first-in, first-out order. Serial Dispatch Queue A serial dispatch queue runs tasks one at a time. Concurrent Dispatch Queue A concurrent dispatch queue runs as many tasks as it can without waiting for the started tasks to finish. Main Dispatch Queue A globally available serial queue that executes tasks on the application’s main thread."
+        ]
+    },
+    {
+        "id": "13",
+        "quizTitle": "What are benefits of Guard ?",
+        "facts": [
+        "There are two big benefits to guard. One is avoiding the pyramid of doom — lots of annoying if let statements nested inside each other moving further and further to the right.",
+        "The other benefit is provide an early exit out of the function using break or using return."
+        ]
+    },
+    {
+        "id": "14",
+        "quizTitle": "What is the difference CollectionViews & TableViews?",
+        "facts": [
+        "TableViews display a list of items, in a single column, a vertical fashion, and limited to vertical or horizontal scrolling only.",
+        "CollectionViews also display a list of items, however, they can have multiple columns and rows."
+        ]
+    },
+    {
+        "id": "15",
+        "quizTitle": "What problems does delegation solve?",
+        "facts": [
+        "Avoiding tight coupling of objects",
+        "Modifying behavior and appearance without the need to subclass objects. Allowing tasks to be handed off to any arbitrary object"
+        ]
+    },
+    {
+        "id": "16",
+        "quizTitle": "What is the major purposes of Frameworks?",
+        "facts": [
+        "Frameworks have three major purposes: Code encapsulation. Code modularity. Code reuse",
+        "You can share your framework with your other apps, team members, or the iOS community. When combined with Swift’s access control, frameworks help define strong, testable interfaces between code modules."
+        ]
+    },
+    {
+        "id": "17",
+        "quizTitle": "What is the difference between a delegate and an NSNotification?",
+        "facts": [
+        "Delegates and NSNotifications can be used to accomplish nearly the same functionality.",
+        "Delegates are one-to-one while NSNotifications are one-to-many."
+        ]
+    },
+    {
+        "id": "18",
+        "quizTitle": "How is an inout parameter different from a regular parameter?",
+        "facts": [
+        "A inout passes by reference",
+        "Regular parameter passes by value"
+        ]
+    },
+    {
+        "id": "19",
+        "quizTitle": "loadView",
+        "facts": [
+        "Creates the view that the controller manages. It’s only called when the view controller is created and only when done programatically.",
+        "It is responsible for making the view property exist in the first place."
+        ]
+    },
+    {
+        "id": "20",
+        "quizTitle": "viewDidLoad",
+        "facts": [
+        "Called after the controller’s view is loaded into memory.",
+        "It’s only called when the view is created."
+        ]
+    },
+    {
+        "id": "21",
+        "quizTitle": "viewWillAppear",
+        "facts": [
+        "It’s called whenever the view is presented on the screen.",
+        "In this step the view has bounds defined but the orientation is not applied."
+        ]
+    },
+    {
+        "id": "22",
+        "quizTitle": "viewWillLayoutSubviews",
+        "facts": [
+        "Called to notify the view controller that its view is about to layout its subviews.",
+        "This method is called every time the frame changes"
+        ]
+    },
+    {
+        "id": "23",
+        "quizTitle": "viewDidLayoutSubviews",
+        "facts": [
+        "Called to notify the view controller that its view has just laid out its subviews.",
+        "Make additional changes here after the view lays out its subviews."
+        ]
+    },
+    {
+        "id": "24",
+        "quizTitle": "What is UIStackView?",
+        "facts": [
+        "UIStackView provides a way to layout a series of views horizontally or vertically",
+        "We can define how the contained views adjust themselves to the available space."
+        ]
+    },
+    {
+        "id": "25",
+        "quizTitle": "application:willFinishLaunchingWithOptions",
+        "facts": [
+        "Method called when the launch process is initiated.",
+        "This is the first opportunity to execute any code within the app."
+        ]
+    },
+    {
+        "id": "26",
+        "quizTitle": "What is Downcasting?",
+        "facts": [
+        "When we’re casting an object to another type in Objective-C, it’s pretty simple since there’s only one way to do it. In Swift, though, there are two ways to cast — one that’s safe and one that’s not.",
+        "as used for upcasting and type casting to bridged type. as? used for safe casting, return nil if failed. as! used to force casting, crash if failed. should only be used when we know the downcast will succeed."
+        ]
+    },
+    {
+        "id": "27",
+        "quizTitle": "UIViewPropertyAnimator",
+        "facts": [
+        "A class that animates changes to views and allows the dynamic modification of those animations.",
+        "A UIViewPropertyAnimator object lets you animate changes to views and dynamically modify your animations before they finish. With a property animator, you can run your animations from start to finish normally or you can turn them into interactive animations and control the timing yourself. The animator operates on animatable properties of views, such as the frame, center, alpha, and transform properties, creating the needed animations from the blocks you provide."
+        ]
+    },
+    {
+        "id": "28",
+        "quizTitle": "Grade 1 Word Problems #1",
+        "facts": [
+        " 7 students in Ms. Merilyn’s class went on the trip and 3 students called in sick and could not go on the trip. How many students are there in her class?.",
+        "In the petting zoo, there were 5 goats and 5 ponies. On the other side of the farm, there were 2 ponies for riding. How many ponies were there?"
+        ]
+    },
+    {
+        "id": "29",
+        "quizTitle": "Grade 1 Word Problems #2",
+        "facts": [
+        "There were two wagons in the farm. Each wagon took 8 students. How many students were on the wagons?",
+        "The farm prepared some drinks for the students. There were 3 trays of hot chocolate and 4 trays of juice. How many trays of drinks were there?"
+        ]
+    },
+    {
+        "id": "30",
+        "quizTitle": "Grade 1 Word Problems #3",
+        "facts": [
+        "She had 6 bags of flour but used up 4 bags on Sunday. How many bags of flour did she have left?",
+        "She baked 9 boxes of cookies and 3 boxes of muffins. Then she sold 2 boxes of cookies. How many boxes of cookies were left?"
+        ]
+    },
+    {
+        "id": "31",
+        "quizTitle": "Grade 1 Word Problems #4",
+        "facts": [
+        "A single scoop cone costs $2 less than a double scoop cone. If a double scoop cone is $5, how much is a single scoop cone?",
+        "Write the subtraction sentence that fits this: “There were 4 cartons of strawberry ice cream in the fridge. A customer bought 2 cartons and then there were 2 cartons left.”"
+        ]
+    },
+    {
+        "id": "32",
+        "quizTitle": "What does your FTP in cycling mean?",
+        "facts": [
+        "FTP stands for Functional Threshold Power, which is commonly defined as the highest average power you can sustain for an hour, measured in watts.",
+        "FTP is often used to determine training zones when using a power meter and to measure improvement."
+        ]
+    },
+    {
+        "id": "33",
+        "quizTitle": "Eddard (Ned) Stark",
+        "facts": [
+        "The Lord of Winterfell and new Hand of the King",
+        "A devoted father and dutiful lord, he is best characterized by his strong sense of honor, and he strives to always do what is right, regardless of his personal feelings."
+        ]
+    },
+    {
+        "id": "34",
+        "quizTitle": "Catelyn (Cat) Tully",
+        "facts": [
+        "Ned’s wife and Lady Stark of Winterfell.",
+        "She is intelligent, strong, and fiercely devoted to her family, leading her to seek out the person responsible for trying to kill her son Bran."
+        ]
+    },
+    {
+        "id": "35",
+        "quizTitle": "Daenerys Stormborn Targaryen",
+        "facts": [
+        "The Dothraki khaleesi (queen) and Targaryen princess.",
+        "She and her brother are the only surviving members of the Targaryen family, and she grows from a frightened girl to a confident ruler, while still maintaining her kindness, over the course of the novel."
+        ]
+    },
+    {
+        "id": "36",
+        "quizTitle": "Jon Snow",
+        "facts": [
+        "Ned Stark’s bastard son.",
+        "Since Catelyn is not his mother, he is not a proper member of the Stark family, and he often feels himself an outsider. He is also a highly capable swordsman and thinker, with a knack for piercing observations."
+        ]
+    },
+    {
+        "id": "37",
+        "quizTitle": "Tyrion (The Imp) Lannister",
+        "facts": [
+        "A small man with a giant intellect and sharp tongue.",
+        "Tyrion does not pity himself but rather accepts his shortcomings as a little person and turns them to his advantage. He loves his family but recognizes their greed and ambition."
+        ]
+    },
+    {
+        "id": "38",
+        "quizTitle": "Bran Stark",
+        "facts": [
+        "One of the youngest of the Stark children.",
+        "Bran is fascinated by stories of knights and adventure, but when is paralyzed in a fall and realizes he is no longer able to become a knight, he is forced to reconsider his life."
+        ]
+    },
+    {
+        "id": "39",
+        "quizTitle": "Sansa Stark",
+        "facts": [
+        "The elder Stark daughter and a beautiful, but extremely naïve, young girl.",
+        "The twelve-year-old Sansa imagines her life as though it were a storybook, ignoring cruel realities around her and concerning herself only with marrying Joffrey Baratheon."
+        ]
+    },
+    {
+        "id": "40",
+        "quizTitle": "Arya Stark",
+        "facts": [
+        "The youngest Stark girl and a wild, willful, but very intelligent child.",
+        "What the ten-year-old Ayra lacks in her sister’s refinement, she makes up for with skill in swordfighting and riding. Arya rejects the idea of a woman’s role being to marry and have babies."
+        ]
+    },
+    {
+        "id": "41",
+        "quizTitle": "Functional programming",
+        "facts": [
+        "In computer science, functional programming is a programming paradigm—a style of building the structure and elements of computer programs—that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.",
+        "It is a declarative programming paradigm, which means programming is done with expressions or declarations[1] instead of statements. In functional code, the output value of a function depends only on the arguments that are passed to the function, so calling a function f twice with the same value for an argument x produces the same result f(x) each time; this is in contrast to procedures depending on a local or global state, which may produce different results at different times when called with the same arguments but a different program state. Eliminating side effects, i.e., changes in state that do not depend on the function inputs, can make it much easier to understand and predict the behavior of a program, which is one of the key motivations for the development of functional programming."
+        ]
+    },
+    {
+        "id": "42",
+        "quizTitle": "Object-oriented programming",
+        "facts": [
+        "A programming paradigm based on the concept of objects, which may contain data, in the form of fields, often known as attributes; and code, in the form of procedures, often known as methods.",
+        " A feature of objects is that an object's procedures can access and often modify the data fields of the object with which they are associated (objects have a notion of ,this, or ,self). In OOP, computer programs are designed by making them out of objects that interact with one another.[1][2] There is significant diversity of OOP languages, but the most popular ones are class-based, meaning that objects are instances of classes, which typically also determine their type."
+        ]
+    },
+    {
+        "id": "43",
+        "quizTitle": "UserDefaults",
+        "facts": [
+        "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+        "The UserDefaults class provides a programmatic interface for interacting with the defaults system. The defaults system allows an app to customize its behavior to match a user’s preferences. For example, you can allow users to specify their preferred units of measurement or media playback speed. Apps store these preferences by assigning values to a set of parameters in a user’s defaults database. The parameters are referred to as defaults because they’re commonly used to determine an app’s default state at startup or the way it acts by default."
+        ]
+    },
+    {
+        "id": "44",
+        "quizTitle": "FileManager",
+        "facts": [
+        "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+        "A file manager object lets you examine the contents of the file system and make changes to it. The FileManager class provides convenient access to a shared file manager object that is suitable for most types of file-related manipulations. A file manager object is typically your primary mode of interaction with the file system. You use it to locate, create, copy, and move files and directories. You also use it to get information about a file or directory or change some of its attributes."
+        ]
+    },
+    {
+        "id": "45",
+        "quizTitle": "Toddler Quiz #1",
+        "facts": [
+        "How many toes do you have?",
+        "Humpty Dumpty sat on a ____?"
+        ]
+    },
+    {
+        "id": "46",
+        "quizTitle": "Grade 1 Ordering Numbers (1 - 100) #1",
+        "facts": [
+        "Put the list of numbers in order, from smallest to largest. 56 23 72 45",
+        "Put the list of numbers in order, from smallest to largest. 74 35 63 81"
+        ]
+    },
+    {
+        "id": "47",
+        "quizTitle": "Grade 1 Ordering Numbers (1 - 100) #2",
+        "facts": [
+        "Put the list of numbers in order, from smallest to largest. 72 16 27 30 42",
+        "Put the list of numbers in order, from smallest to largest. 90 55 24 8 63"
+        ]
+    },
+    {
+        "id": "48",
+        "quizTitle": "Toddler Quiz #2",
+        "facts": [
+        "Baa baa black sheep, have you any ____?",
+        "Mary had a little ____."
+        ]
+    },
+    {
+        "id": "49",
+        "quizTitle": "Toddler Quiz #3",
+        "facts": [
+        "What farm animal says 'Moo?'",
+        "What farm animal lays eggs"
+        ]
+    },
+    {
+        "id": "50",
+        "quizTitle": "UIView.transition",
+        "facts": [
+        "Creates a transition animation for the specified container view.",
+        "This method applies a transition to the specified view so that you can make state changes to it. The block you specify in the animations parameter contains whatever state changes you want to make. You can use this block to add, remove, show, or hide subviews of the specified view."
+        ]
+    },
+    {
+        "id": "51",
+        "quizTitle": "UIView.animate",
+        "facts": [
+        "Animate changes to one or more views using the specified duration and completion handler.",
+        "For example, if you want to fade a view until it is totally transparent and then remove it from your view hierarchy."
+        ]
+    },
+    {
+        "id": "52",
+        "quizTitle": "Explain the differences between Weak and Unowned References",
+        "facts": [
+        "Define a capture in a closure as an unowned reference when the closure and the instance it captures will always refer to each other, and will always be deallocated at the same time.",
+        "Conversely, define a capture as a weak reference when the captured reference may become nil at some point in the future. Weak references are always of an optional type, and automatically become nil when the instance they reference is deallocated. This enables you to check for their existence within the closure’s body."
+        ]
+    }
+]
+}

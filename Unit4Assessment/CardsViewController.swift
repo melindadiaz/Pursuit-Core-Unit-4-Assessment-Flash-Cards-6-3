@@ -13,15 +13,15 @@ class CardsViewController: UIViewController {
     
     private let cardsView = CardsView()
     
-    //TODO: Data Persistence and populate myFlashcards with it
-    private var myFlashCards = "" {
+    public var dataPersistence: DataPersistence<FlashCards>!
+    
+    //TODO: See if Data Persistence works
+    private var myFlashCards = [FlashCards]() {
         didSet{
             cardsView.collectionView.reloadData()
-            if myFlashCards.isEmpty { //we added the empty state in the next line
-                //setup our empty view on the collectionView
+            if myFlashCards.isEmpty {
                 cardsView.collectionView.backgroundView = EmptyView(title: "Saved FlashCards", message: "There are no currently saved flashcards. Start by creating your own custom flashcards or search for existing flashcards by selecting one the tabs on the bottom of the screen")
             } else {
-                //remove emptyView from collectionView background view, background view is just a collection set up but it sets the state of the collection view
                 cardsView.collectionView.backgroundView = nil
             }
         }
@@ -40,7 +40,13 @@ class CardsViewController: UIViewController {
     }
     
     //TODO: Create a fetchFlashCards func & Delegate Extension!!
-    
+    private func fetchSavedFlashCards() {
+        do {
+            myFlashCards = try dataPersistence.loadItems()
+        } catch {
+            print("Cannot load flashcards \(error)")
+        }
+    }
     
 }
 

@@ -8,18 +8,40 @@
 
 import Foundation
 
-struct FlashCards: Decodable & Equatable {
+struct FlashCards: Codable & Equatable {
     let cards: [Cards]
 }
 
-struct Cards: Decodable & Equatable {
+struct Cards: Codable & Equatable {
     let id: Int
     let cardTitle: String
     let facts: [Facts]
 }
 //TODO: Make sure this is the appropriate model
-struct Facts: Decodable & Equatable {
+struct Facts: Codable & Equatable {
     let factOne: String
     let factTwo: String
     
+}
+
+//MARK: You may not need this
+extension FlashCards {
+    static func getCards() -> [Cards] {
+        var flashcards = [Cards]()
+        
+        guard let fileURL = Bundle.main.url(forResource: "flashCards", withExtension: "json") else {
+            fatalError("could not locate json file")
+        }
+        do {
+            let data = try Data(contentsOf: fileURL)
+            
+            let flashcardData = try JSONDecoder().decode(FlashCards.self, from: data)
+            flashcards = flashcardData.cards
+        } catch {
+            fatalError("failed to load contents \(error)")
+        }
+        
+        
+        return flashcards
+    }
 }

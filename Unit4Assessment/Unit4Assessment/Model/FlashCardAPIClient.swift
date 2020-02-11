@@ -34,7 +34,4 @@ struct FlashCardsAPIClient {
             }
         }
     }
-    
-    
-    
 }
