@@ -17,14 +17,16 @@ class FlashTabBarController: UITabBarController {
     private lazy var cardsVC: CardsViewController = {
         let vc = CardsViewController()
         vc.tabBarItem = UITabBarItem(title: "FlashCards", image: UIImage(systemName: "doc.text"), tag: 0)
-        //TODO: Add Data Persistence
+        vc.dataPersistence = dataPersistence
+        vc.dataPersistence.delegate = vc
         return vc
     }()
     
     private lazy var createVC: CreateViewController = {
         let vc = CreateViewController()
+        
+        vc.dataPersistence = dataPersistence
         vc.tabBarItem = UITabBarItem(title: "Create New", image: UIImage(systemName: "square.and.pencil"), tag: 1)
-        //TODO: Add Data Persistence and custom delegate
         return vc
     }()
     
@@ -33,7 +35,6 @@ class FlashTabBarController: UITabBarController {
         vc.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
         return vc
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

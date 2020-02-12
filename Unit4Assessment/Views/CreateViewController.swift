@@ -11,8 +11,10 @@ import DataPersistence
 
 class CreateViewController: UIViewController {
 
+    //TODO: CustomDelegate here!!
+     public var dataPersistence: DataPersistence<FlashCards>!
     public var createFlashcards: FlashCards?
-    public var dataPersistance: DataPersistence<FlashCards>!
+   
     private let createdView = CreateView()
     
     override func loadView() {

@@ -27,6 +27,17 @@ class CardsViewController: UIViewController {
             }
         }
     }
+    //TODO: Fix the search bar!!
+//    var userQuery = "" {
+//           didSet {
+//            myFlashCards = FlashCards.getCards().filter{$0.cards.contains(userQuery)}
+//               //songs = Song.loveSongs.filter{$0.name.lowercased().contains(userQuery.lowercased())}
+//           }
+//       }
+    
+    var isSearchBarEmpty: Bool {
+        return cardsView.searchBar.text?.isEmpty ?? true
+    }
     
     
     override func loadView() {
@@ -39,13 +50,14 @@ class CardsViewController: UIViewController {
         cardsView.collectionView.register(CardsCollectionViewCell.self, forCellWithReuseIdentifier: "cardsCollectionViewCell")
         cardsView.collectionView.dataSource = self
         cardsView.collectionView.delegate = self
-      
+        cardsView.searchBar.delegate = self
         fetchSavedFlashCards()
     }
     
     //TODO: Create a fetchFlashCards func & Delegate Extension!!
     private func fetchSavedFlashCards() {
         do {
+            //CompilerError: Thread 1: Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value
             myFlashCards = try dataPersistence.loadItems()
         } catch {
             showAlert(title: "Error", message: "Could not load cards!")
@@ -114,4 +126,25 @@ extension CardsViewController: UICollectionViewDelegateFlowLayout {
         //segue
         navigationController?.pushViewController(detailVC, animated: true)
     }
+}
+
+extension CardsViewController: UISearchBarDelegate {
+      func searchBarSearchButtonClicked(_ searchBar: UISearchBar, textDidChange searchText: String) {
+          print("THIS IS JUST A TEST \(searchBar.searchTextField.text)")
+          guard !searchText.isEmpty else {
+              //if its empty we want to reload all the articles
+              fetchSavedFlashCards()
+    
+               return
+          }
+      }
+     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            fetchSavedFlashCards()
+            return
+            }
+        
+            //userQuery = searchText
+        }
+    
 }
