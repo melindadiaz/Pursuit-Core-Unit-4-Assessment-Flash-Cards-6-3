@@ -26,6 +26,7 @@ class FlashTabBarController: UITabBarController {
         let vc = CreateViewController()
         
         vc.dataPersistence = dataPersistence
+        vc.dataPersistence.delegate = vc
         vc.tabBarItem = UITabBarItem(title: "Create New", image: UIImage(systemName: "square.and.pencil"), tag: 1)
         return vc
     }()

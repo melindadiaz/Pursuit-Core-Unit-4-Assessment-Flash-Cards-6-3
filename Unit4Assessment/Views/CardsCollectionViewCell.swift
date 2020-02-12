@@ -26,8 +26,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
     public lazy var moreButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        //you want to set up the buttons ACTION PROGRAMATICALLY
-        //TODO:      // button.addTarget(self, action: #selector(moreButtonPressed(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(moreButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
     

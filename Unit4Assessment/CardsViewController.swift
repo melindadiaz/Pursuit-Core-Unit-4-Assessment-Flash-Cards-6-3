@@ -50,6 +50,7 @@ class CardsViewController: UIViewController {
         cardsView.collectionView.register(CardsCollectionViewCell.self, forCellWithReuseIdentifier: "cardsCollectionViewCell")
         cardsView.collectionView.dataSource = self
         cardsView.collectionView.delegate = self
+        
         cardsView.searchBar.delegate = self
         fetchSavedFlashCards()
     }
@@ -87,12 +88,12 @@ extension CardsViewController: UICollectionViewDataSource {
 }
 
 extension CardsViewController: DataPersistenceDelegate {
-    //Its listening if an item gets saved then this function gets calledd
-    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        print("item was saved")
-        //if you want to see what you did here
-       fetchSavedFlashCards()
-    }
+   //Its listening if an item gets saved then this function gets calledd
+      func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+          print("item was saved")
+          //if you want to see what you did here
+         fetchSavedFlashCards()
+      }
     //its listening to changes in deletion
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
          fetchSavedFlashCards()

@@ -13,43 +13,32 @@ class CreateView: UIView {
     public lazy var flashCardAnswer: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.preferredFont(forTextStyle: .headline)
+        textField.placeholder = "FRONT OF CARD: Answer/Question here"
+        //number of lines
         textField.textAlignment = .center
         textField.backgroundColor = .systemTeal
         return textField
     }()
     
-    public lazy var flashCardDetailOne: UITextField = {
-        let textField = UITextField()
-        textField.font = UIFont.preferredFont(forTextStyle: .headline)
-        textField.textAlignment = .left
-        textField.backgroundColor = .systemTeal
-        return textField
+    public lazy var flashCardDetailOne: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.preferredFont(forTextStyle: .headline)
+//        textView.text = " BACK OF CARD: Details or Answer here."
+//        textView.textColor = .systemGray2
+        textView.textAlignment = .left
+        textView.backgroundColor = .systemTeal
+        return textView
     }()
-    //TODO: Erase??
-//    public lazy var flashCardDetailOne: UITextView = {
-//        let textView = UITextView()
-//        textView.font = UIFont.preferredFont(forTextStyle: .body)
-//        textView.backgroundColor = .systemPink
-//        textView.textAlignment = .left
-//        return textView
-//    }()
     
-//    public lazy var flashCardDetailTwo: UITextView = {
-//        let textView = UITextView()
-//        textView.font = UIFont.preferredFont(forTextStyle: .body)
-//        textView.backgroundColor = .systemPink
-//        textView.textAlignment = .left
-//        return textView
-//
-//    }()
-    
-    public lazy var flashCardDetailTwo: UITextField = {
-           let textField = UITextField()
-           textField.font = UIFont.preferredFont(forTextStyle: .headline)
-           textField.textAlignment = .left
-           textField.backgroundColor = .systemTeal
-           return textField
-       }()
+    public lazy var flashCardDetailTwo: UITextView = {
+        let textview = UITextView()
+        textview.font = UIFont.preferredFont(forTextStyle: .headline)
+        textview.textAlignment = .left
+//        textview.text = " BACK OF CARD: Details or Answer here."
+//        textview.textColor = .systemGray2
+        textview.backgroundColor = .systemTeal
+        return textview
+    }()
     
     
     override init(frame: CGRect) {
@@ -73,7 +62,9 @@ class CreateView: UIView {
         flashCardAnswer.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            flashCardAnswer.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            flashCardAnswer.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            //flashCardAnswer.centerXAnchor.constraint(equalTo: centerXAnchor),
+            flashCardAnswer.heightAnchor.constraint(equalToConstant: 40),
             flashCardAnswer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             flashCardAnswer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
@@ -87,7 +78,7 @@ class CreateView: UIView {
             flashCardDetailOne.topAnchor.constraint(equalTo: flashCardAnswer.bottomAnchor, constant: 20),
             flashCardDetailOne.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             flashCardDetailOne.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            flashCardDetailOne.heightAnchor.constraint(equalToConstant: 50)
+            flashCardDetailOne.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
     
@@ -99,7 +90,7 @@ class CreateView: UIView {
             flashCardDetailTwo.topAnchor.constraint(equalTo: flashCardDetailOne.bottomAnchor, constant: 20),
             flashCardDetailTwo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             flashCardDetailTwo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            flashCardDetailTwo.heightAnchor.constraint(equalToConstant: 50)
+            flashCardDetailTwo.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
 }

@@ -24,6 +24,7 @@
 		4DDF717923F3350F001C156C /* FlashCardLocalJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF717823F3350F001C156C /* FlashCardLocalJSON.swift */; };
 		4DDF717B23F3370B001C156C /* flashCards.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DDF717A23F3370B001C156C /* flashCards.json */; };
 		4DDF717E23F34589001C156C /* FlashCardsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF717D23F34589001C156C /* FlashCardsDetailViewController.swift */; };
+		4DDF718023F46421001C156C /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF717F23F46421001C156C /* SearchCollectionCell.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 579023A023F2EE3B000AA216 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		4DDF717823F3350F001C156C /* FlashCardLocalJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardLocalJSON.swift; sourceTree = "<group>"; };
 		4DDF717A23F3370B001C156C /* flashCards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = flashCards.json; sourceTree = "<group>"; };
 		4DDF717D23F34589001C156C /* FlashCardsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlashCardsDetailViewController.swift; path = Cells/FlashCardsDetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		4DDF717F23F46421001C156C /* SearchCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchCollectionCell.swift; path = Views/SearchCollectionCell.swift; sourceTree = SOURCE_ROOT; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		4DDF715523F2FDE6001C156C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4DDF717F23F46421001C156C /* SearchCollectionCell.swift */,
 				4DDF716E23F30E1E001C156C /* CardsCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -310,6 +313,7 @@
 				4DDF716F23F30E1E001C156C /* CardsCollectionViewCell.swift in Sources */,
 				4DDF715A23F2FED0001C156C /* FlashTabBarController.swift in Sources */,
 				4DDF717123F31978001C156C /* EmptyView.swift in Sources */,
+				4DDF718023F46421001C156C /* SearchCollectionCell.swift in Sources */,
 				4DDF715C23F2FF10001C156C /* CardsView.swift in Sources */,
 				4DDF716523F30290001C156C /* CreateView.swift in Sources */,
 				4DDF716123F30263001C156C /* CreateViewController.swift in Sources */,
