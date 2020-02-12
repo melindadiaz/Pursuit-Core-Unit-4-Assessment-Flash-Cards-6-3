@@ -50,12 +50,10 @@ class CardsViewController: UIViewController {
         cardsView.collectionView.register(CardsCollectionViewCell.self, forCellWithReuseIdentifier: "cardsCollectionViewCell")
         cardsView.collectionView.dataSource = self
         cardsView.collectionView.delegate = self
-        
         cardsView.searchBar.delegate = self
         fetchSavedFlashCards()
     }
     
-    //TODO: Create a fetchFlashCards func & Delegate Extension!!
     private func fetchSavedFlashCards() {
         do {
             //CompilerError: Thread 1: Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value
@@ -76,11 +74,11 @@ extension CardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardsCollectionViewCell", for: indexPath) as? CardsCollectionViewCell else {
             fatalError("Could not downcast to CardsCollectionViewCell" )}
-        //TODO: Make sure this works once model is done
-        //let myFlashCard = FlashCards[indexPath.row]
+       
+        let myFlashCard = myFlashCards[indexPath.row]
         
         //TODO: Configure cell func goes here once created, Finish step 4 of delegate here and call it
-       //cell.configureCell(for: myFlashCard)
+      cell.configureCell(for: myFlashCard)
         cell.backgroundColor = .white
         //cell.delegate = self
         return cell
@@ -91,7 +89,6 @@ extension CardsViewController: DataPersistenceDelegate {
    //Its listening if an item gets saved then this function gets calledd
       func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
           print("item was saved")
-          //if you want to see what you did here
          fetchSavedFlashCards()
       }
     //its listening to changes in deletion
@@ -131,21 +128,13 @@ extension CardsViewController: UICollectionViewDelegateFlowLayout {
 
 extension CardsViewController: UISearchBarDelegate {
       func searchBarSearchButtonClicked(_ searchBar: UISearchBar, textDidChange searchText: String) {
-          print("THIS IS JUST A TEST \(searchBar.searchTextField.text)")
+          print("THIS IS JUST A TEST \(searchBar.searchTextField.description)")
           guard !searchText.isEmpty else {
-              //if its empty we want to reload all the articles
               fetchSavedFlashCards()
     
                return
           }
       }
-     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText.isEmpty else {
-            fetchSavedFlashCards()
-            return
-            }
-        
-            //userQuery = searchText
-        }
+    
     
 }

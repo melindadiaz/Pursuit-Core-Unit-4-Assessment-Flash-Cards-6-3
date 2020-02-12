@@ -10,12 +10,13 @@ import UIKit
 
 class CardsView: UIView {
     
-    //TODO: You might need an ImageView for the collectionview
+    
     public lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
         //has the user use only lowercased if they typed capital case
         sb.autocapitalizationType = .none
         sb.placeholder = "Search your FlashCards"
+        sb.backgroundColor = .systemYellow
         return sb
     }()
     

@@ -14,12 +14,11 @@ import UIKit
 class CardsCollectionViewCell: UICollectionViewCell {
     
     
-    private var currentFlashCards: Cards!
+    private var currentFlashCards: FlashCards!
     
     private lazy var longPressedGesture : UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
-        //TODO:      // gesture.addTarget(self, action: #selector(didLongPress(_:)))
-        //but because the label is over the cell we gotta use userInteraction is enabled look at commoninit
+     gesture.addTarget(self, action: #selector(didLongPress(_:)))
         return gesture
     }()
     
@@ -74,20 +73,48 @@ class CardsCollectionViewCell: UICollectionViewCell {
         setUpMoreButtonConstraint()
         setUpFlashCardAnswerTitleConstraint()
         flashCardAnswerTitle.isUserInteractionEnabled = true
+        addGestureRecognizer(longPressedGesture)
         setUpFlashCardDetailTextFieldOne()
         setUpFlashCardDetailTextFieldTwo()
     }
     
-    //TODO: Finish Gesture DIDLongPress and Animate func check saved article cell
+    //TODO: Finish Gesture DIDLongPress and Animate func check saved cell
     
     @objc private func moreButtonPressed(_ sender: UIButton) {
         //TODO:Step3: Custom Protocol
         // delegate?.didSelectMoreButton(self, article: currentArticle)
         //MARK: Delete after
-        print("button was longpressed for flashCards, This is just for TEST PURPOSES you delete it after")
+        print("button was pressed for flashCards, This is just for TEST PURPOSES you delete it after")
         
     }
-    
+    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard currentFlashCards != nil else { return }
+        print("button was longpressed for flashCards, TEST PURPOSES")
+        if gesture.state == .began || gesture.state == .changed {
+            return
+        }
+        isShowingDetails.toggle()
+        animate()
+    }
+       
+       private func animate() {
+           let duration: Double = 1.0
+           print("animate ")
+           if isShowingDetails {
+               UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
+                   self.flashCardAnswerTitle.alpha = 1.0
+                self.flashCardDetailTextFieldOne.alpha = 0.0
+                  
+                self.flashCardDetailTextFieldTwo.alpha = 0.0
+               }, completion: nil)
+           } else {
+               UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
+                   self.flashCardAnswerTitle.alpha = 0.0
+                self.flashCardDetailTextFieldOne.alpha = 1.0
+                self.flashCardDetailTextFieldTwo.alpha = 1.0
+               }, completion: nil)
+           }
+       }
     
     private func setUpMoreButtonConstraint() {
         addSubview(moreButton)
@@ -143,9 +170,9 @@ class CardsCollectionViewCell: UICollectionViewCell {
         ])
         
     }
-    
-    public func configureCell(for savedCards: Cards) {
+    //TODO: Fix this it works better with cards
+    public func configureCell(for savedCards: FlashCards) {
           currentFlashCards = savedCards
-        flashCardAnswerTitle.text = currentFlashCards.cardTitle
+        //flashCardAnswerTitle.text = currentFlashCards.cardTitle
       }
 }

@@ -50,15 +50,20 @@ class CreateViewController: UIViewController {
 //            return
 //        }
 //        try dataPersistence.createItem(flashCard){
-//            throw
+//
 //             showAlert(title: "Added to Favorites", message: "You successfully added this to your favorites! You may now find this picture in your favorites tab")
 //        }
 //           do {
-//            guard let flashCard = createFlashcards else { return }
+//            guard let flashCard = createFlashcards else {
+//
+//            } else if {
+//            print("Does not work")
+//            dataPersistence.createItem(flashCard)
+//                           showAlert(title: "Saved", message: "You successfully saved your custom FlashCard! Find this in your FlashCard tab below")
+//                return }
 //            print("it works")
 //            //customFlashCardRequirements()
-//            try dataPersistence.createItem(flashCard)
-//            showAlert(title: "Saved", message: "You successfully saved your custom FlashCard! Find this in your FlashCard tab below")
+//
 //           } catch {
 //               print("error saving flashCard")
 //           }
