@@ -88,6 +88,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
     @objc private func moreButtonPressed(_ sender: UIButton) {
         //TODO:Step3: Custom Protocol
         delegate?.didSelectMoreButton(self, flashCards: currentFlashCards)
+        
         //MARK: Delete after
         print("button was pressed for flashCards, This is just for TEST PURPOSES you delete it after")
         

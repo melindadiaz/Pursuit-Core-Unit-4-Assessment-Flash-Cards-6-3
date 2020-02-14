@@ -174,4 +174,11 @@ class SearchCollectionCell: UICollectionViewCell {
            ])
            
        }
+    
+    public func configureCell(for savedCards: Cards) {
+      searchedCard = savedCards
+      flashCardAnswerTitle.text = savedCards.quizTitle
+      flashCardDetailTextFieldOne.text = savedCards.facts.first
+      flashCardDetailTextFieldTwo.text = savedCards.facts.last
+    }
 }

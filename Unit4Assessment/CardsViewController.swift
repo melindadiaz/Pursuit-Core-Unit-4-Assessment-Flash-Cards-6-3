@@ -71,7 +71,7 @@ extension CardsViewController: UICollectionViewDataSource {
         
         let myFlashCard = myFlashCards[indexPath.row]
         
-        //TODO: Configure cell func goes here once created, Finish step 4 of delegate here and call it
+        //TODO:Finish step 4 of delegate here and call it
         cell.configureCell(for: myFlashCard)
         cell.backgroundColor = .white
         //cell.delegate = self
@@ -108,7 +108,6 @@ extension CardsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
-    
 }
 
 extension CardsViewController: UISearchBarDelegate {
@@ -116,10 +115,34 @@ extension CardsViewController: UISearchBarDelegate {
         print("THIS IS JUST A TEST \(searchBar.searchTextField.description)")
         guard !searchText.isEmpty else {
             fetchSavedFlashCards()
-            
             return
         }
     }
+}
+
+extension CardsViewController: SavedFlashCardDelegate {
+    func didSelectMoreButton(_ savedFlashCards: CardsCollectionViewCell, flashCards: Cards) {
+         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+               let deleteAction = UIAlertAction(title: "Delete?", style: .destructive) { alertAction in
+                self.deleteFlashCard(flashCards: flashCards)
+                   //write a delete Helper function
+               }
+               alertController.addAction(cancelAction)
+               alertController.addAction(deleteAction)
+               present(alertController, animated: true)
+           }
     
-    
+    private func deleteFlashCard(flashCards: Cards) {
+        guard let thisIndex = myFlashCards.firstIndex(of: flashCards) else {
+            return
+        }
+        do {
+            //deletes from documents directory
+            try dataPersistence.deleteItem(at: thisIndex)
+        } catch {
+           
+            print("error deleting flashCard: \(error) For TEST purposes only must delete after")
+        }
+    }
 }

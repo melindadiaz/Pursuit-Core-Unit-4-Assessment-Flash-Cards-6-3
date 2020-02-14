@@ -26,6 +26,9 @@ class SearchCardsViewController: UIViewController {
         searchView.collectionView.delegate = self
         searchView.collectionView.dataSource = self
         searchView.collectionView.register(SearchCollectionCell.self, forCellWithReuseIdentifier: "searchCollectionCell")
+        //Don't forget to set this here its listening to the changes
+        //TODO:Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value
+        dataPersistence.delegate = self
         searchView.searchBar.delegate = self
     }
     
@@ -73,10 +76,11 @@ extension SearchCardsViewController: UICollectionViewDataSource {
         //TODO: Make sure this works once model is done
         let myFlashCard = flashCardSearch[indexPath.row]
         
-        //TODO: Configure cell func goes here once created, Finish step 4 of delegate here and call it
-        //cell.configureCell(for: myFlashCard)
+        //TODO: Finish step 4 of delegate here and call it
+        cell.configureCell(for: myFlashCard)
         cell.backgroundColor = .white
-        cell.delegate = self
+        //was fixed by compiler
+        cell.delegate = self as? SavedFlashCardCellDelegate
         return cell
     }
     
