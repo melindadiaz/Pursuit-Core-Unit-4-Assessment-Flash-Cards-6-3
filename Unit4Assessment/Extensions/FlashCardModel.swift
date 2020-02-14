@@ -15,14 +15,7 @@ struct FlashCards: Codable & Equatable {
 struct Cards: Codable & Equatable {
     let id: String
     let quizTitle: String
-    let cardTitle: String
-    let facts: [Facts]
-}
-//TODO: Make sure this is the appropriate model
-struct Facts: Codable & Equatable {
-    let factOne: String
-    let factTwo: String
-    
+    let facts: [String]
 }
 
 //MARK: You may not need this

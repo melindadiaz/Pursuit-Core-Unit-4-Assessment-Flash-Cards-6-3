@@ -8,13 +8,15 @@
 
 import UIKit
 
-//TODO: Create a custom Delegate and protocol here
 
+protocol SavedFlashCardDelegate: AnyObject {
+    func didSelectMoreButton(_ savedFlashCards: CardsCollectionViewCell, flashCards: Cards)
+}
 
 class CardsCollectionViewCell: UICollectionViewCell {
     
-    
-    private var currentFlashCards: FlashCards!
+    public weak var delegate: SavedFlashCardDelegate?
+    private var currentFlashCards: Cards!
     
     private lazy var longPressedGesture : UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
@@ -35,6 +37,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
         label.text = "What is a FlashCard?"
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
+        label.alpha = 1.0
         return label
     }()
     
@@ -44,6 +47,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
         textView.text = "This is where the first detail is"
         textView.isUserInteractionEnabled = true
         textView.backgroundColor = .systemYellow
+        textView.alpha = 0.0
         return textView
     }()
     
@@ -53,6 +57,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
         textView.text = "This is where the second detail is"
         textView.isUserInteractionEnabled = true
         textView.backgroundColor = .systemTeal
+        textView.alpha = 0.0
         return textView
     }()
     
@@ -82,7 +87,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
     
     @objc private func moreButtonPressed(_ sender: UIButton) {
         //TODO:Step3: Custom Protocol
-        // delegate?.didSelectMoreButton(self, article: currentArticle)
+        delegate?.didSelectMoreButton(self, flashCards: currentFlashCards)
         //MARK: Delete after
         print("button was pressed for flashCards, This is just for TEST PURPOSES you delete it after")
         
@@ -93,7 +98,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
         if gesture.state == .began || gesture.state == .changed {
             return
         }
-        isShowingDetails.toggle()
+      
         animate()
     }
        
@@ -114,6 +119,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
                 self.flashCardDetailTextFieldTwo.alpha = 1.0
                }, completion: nil)
            }
+        isShowingDetails.toggle()
        }
     
     private func setUpMoreButtonConstraint() {
@@ -170,9 +176,11 @@ class CardsCollectionViewCell: UICollectionViewCell {
         ])
         
     }
-    //TODO: Fix this it works better with cards
-    public func configureCell(for savedCards: FlashCards) {
-          currentFlashCards = savedCards
-        //flashCardAnswerTitle.text = currentFlashCards.cardTitle
+    
+    public func configureCell(for savedCards: Cards) {
+        currentFlashCards = savedCards
+        flashCardAnswerTitle.text = savedCards.quizTitle
+        flashCardDetailTextFieldOne.text = savedCards.facts.first
+        flashCardDetailTextFieldTwo.text = savedCards.facts.last
       }
 }

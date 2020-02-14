@@ -10,10 +10,10 @@ import UIKit
 import DataPersistence
 
 class SearchCardsViewController: UIViewController {
-
-    public var dataPersistence: DataPersistence<FlashCards>!
+    
+    public var dataPersistence: DataPersistence<Cards>!
     private let searchView = SearchCardsView()
-    private var flashCardSearch: FlashCards?
+    private var flashCardSearch = [Cards]()
     
     override func loadView() {
         view = searchView
@@ -29,7 +29,7 @@ class SearchCardsViewController: UIViewController {
         searchView.searchBar.delegate = self
     }
     
-
+    
 }
 //TODO: fix this
 extension SearchCardsViewController: DataPersistenceDelegate {
@@ -47,19 +47,19 @@ extension SearchCardsViewController: DataPersistenceDelegate {
 }
 extension SearchCardsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-          let maxSize: CGSize = UIScreen.main.bounds.size
-          let spacingBetweenItems: CGFloat = 10
-          let itemHeight: CGFloat = maxSize.height * 0.3
-          let numberOfItems: CGFloat = 2
-          let totalSpacing: CGFloat = (2 * spacingBetweenItems) + (numberOfItems - 1) * spacingBetweenItems
-          let itemWidth: CGFloat = (maxSize.width - totalSpacing)/numberOfItems
-          
-          return CGSize(width: itemWidth, height: itemHeight)
-      }
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let spacingBetweenItems: CGFloat = 10
+        let itemHeight: CGFloat = maxSize.height * 0.3
+        let numberOfItems: CGFloat = 2
+        let totalSpacing: CGFloat = (2 * spacingBetweenItems) + (numberOfItems - 1) * spacingBetweenItems
+        let itemWidth: CGFloat = (maxSize.width - totalSpacing)/numberOfItems
+        
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-       }
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
 }
 
 extension SearchCardsViewController: UICollectionViewDataSource {
@@ -68,31 +68,31 @@ extension SearchCardsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCollectionCell", for: indexPath) as? SearchCollectionCell else {
-             fatalError("Could not downcast to SearchCollectionCell" )}
-         //TODO: Make sure this works once model is done
-         //let myFlashCard = flashCardSearch[indexPath.row]
-         
-         //TODO: Configure cell func goes here once created, Finish step 4 of delegate here and call it
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCollectionCell", for: indexPath) as? SearchCollectionCell else {
+            fatalError("Could not downcast to SearchCollectionCell" )}
+        //TODO: Make sure this works once model is done
+        let myFlashCard = flashCardSearch[indexPath.row]
+        
+        //TODO: Configure cell func goes here once created, Finish step 4 of delegate here and call it
         //cell.configureCell(for: myFlashCard)
-         cell.backgroundColor = .white
-         //cell.delegate = self
-         return cell
+        cell.backgroundColor = .white
+        cell.delegate = self
+        return cell
     }
     
     
 }
 
 extension SearchCardsViewController: UISearchBarDelegate {
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar, textDidChange searchText: String) {
-      print("THIS IS JUST A TEST \(searchBar.searchTextField.text)")
-      guard !searchText.isEmpty else {
-          //if its empty we want to reload all the cards
-        //TODO: Fix searchbar keyboard
-          searchView.searchBar.resignFirstResponder()
-       return
-      }
-  }
-
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("THIS IS JUST A TEST \(searchBar.searchTextField.text)")
+        guard searchBar.text != nil else {
+            //if its empty we want to reload all the cards
+            //TODO: Fix searchbar keyboard
+            searchView.searchBar.resignFirstResponder()
+            return
+        }
+    }
+    
 }
 

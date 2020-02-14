@@ -9,16 +9,16 @@
 import UIKit
 
 protocol SavedFlashCardCellDelegate: AnyObject {
-    func didSelectMoreButton(_ savedFlashCards: SearchCollectionCell, flashCards: FlashCards)
+    func didSelectMoreButton(_ savedFlashCards: SearchCollectionCell, flashCards: Cards)
 }
 
 
 class SearchCollectionCell: UICollectionViewCell {
     
     
-    private var searchedCard: FlashCards!
-    //TODO:
-   // weak var delegate = SavedFlashCardCellDelegate?
+    private var searchedCard: Cards!
+    
+    public weak var delegate: SavedFlashCardCellDelegate?
     
     private lazy var longPressedGesture : UILongPressGestureRecognizer = {
            let gesture = UILongPressGestureRecognizer()
@@ -85,7 +85,7 @@ class SearchCollectionCell: UICollectionViewCell {
        @objc private func moreButtonPressed(_ sender: UIButton) {
            //TODO:Step3: Custom Protocol
         
-      // delegate?.didSelectMoreButton(self, flashCards: searchedCard)
+        delegate?.didSelectMoreButton(self, flashCards: searchedCard)
            //MARK: Delete after
            print("button was pressed for flashCards, This is just for TEST PURPOSES you delete it after")
            
