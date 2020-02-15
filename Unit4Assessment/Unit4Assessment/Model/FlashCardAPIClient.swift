@@ -10,8 +10,8 @@ import Foundation
 import NetworkHelper
 
 struct FlashCardsAPIClient {
-    //TODO: Make sure this works with Model
-    static func fetchFlashCards(for section: String, completion: @escaping (Result<[Cards],AppError>) -> ()) {
+    
+    static func fetchFlashCards(completion: @escaping (Result<[Cards],AppError>) -> ()) {
         
         let endpointURLString = "https://5daf8b36f2946f001481d81c.mockapi.io/api/v2/cards"
         

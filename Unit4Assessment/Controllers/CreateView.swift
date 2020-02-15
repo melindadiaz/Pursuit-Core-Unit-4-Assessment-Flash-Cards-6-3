@@ -14,7 +14,6 @@ class CreateView: UIView {
         let textField = UITextField()
         textField.font = UIFont.preferredFont(forTextStyle: .headline)
         textField.placeholder = "FRONT OF CARD: Answer/Question here"
-        //number of lines
         textField.textAlignment = .center
         textField.backgroundColor = .systemTeal
         return textField
@@ -23,8 +22,6 @@ class CreateView: UIView {
     public lazy var flashCardDetailOne: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.preferredFont(forTextStyle: .headline)
-//        textView.text = " BACK OF CARD: Details or Answer here."
-//        textView.textColor = .systemGray2
         textView.textAlignment = .left
         textView.backgroundColor = .systemTeal
         return textView
@@ -34,8 +31,6 @@ class CreateView: UIView {
         let textview = UITextView()
         textview.font = UIFont.preferredFont(forTextStyle: .headline)
         textview.textAlignment = .left
-//        textview.text = " BACK OF CARD: Details or Answer here."
-//        textview.textColor = .systemGray2
         textview.backgroundColor = .systemTeal
         return textview
     }()
@@ -63,7 +58,6 @@ class CreateView: UIView {
         
         NSLayoutConstraint.activate([
             flashCardAnswer.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            //flashCardAnswer.centerXAnchor.constraint(equalTo: centerXAnchor),
             flashCardAnswer.heightAnchor.constraint(equalToConstant: 40),
             flashCardAnswer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             flashCardAnswer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)

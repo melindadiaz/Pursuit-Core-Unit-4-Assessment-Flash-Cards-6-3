@@ -13,8 +13,13 @@ class SearchCardsViewController: UIViewController {
     
     public var dataPersistence: DataPersistence<Cards>!
     private let searchView = SearchCardsView()
-    private var flashCardSearch = [Cards]()
-    
+    private var flashCardSearch = [Cards](){
+        didSet {
+            DispatchQueue.main.async {
+                self.searchView.collectionView.reloadData()
+            }
+        }
+    }
     override func loadView() {
         view = searchView
     }
@@ -26,28 +31,34 @@ class SearchCardsViewController: UIViewController {
         searchView.collectionView.delegate = self
         searchView.collectionView.dataSource = self
         searchView.collectionView.register(SearchCollectionCell.self, forCellWithReuseIdentifier: "searchCollectionCell")
-        //Don't forget to set this here its listening to the changes
-        //TODO:Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value
-        dataPersistence.delegate = self
         searchView.searchBar.delegate = self
+        fetchStuff()
+        navigationItem.title = "Premade Flash Cards"
     }
     
     
+    private func fetchStuff() {
+        FlashCardsAPIClient.fetchFlashCards { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error", message: "Cannot load premade flash cards")
+                }
+            case .success(let cards):
+                self?.flashCardSearch = cards
+            }
+        }
+    }
 }
-//TODO: fix this
+
 extension SearchCardsViewController: DataPersistenceDelegate {
-    //Its listening if an item gets saved then this function gets called
+    
     func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        print("item was saved")
-        //if you want to see what you did here
-        
     }
-    //its listening to changes in deletion
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        
-        print("item was deleted, THIS IS FOR TEST PURPOSES ONLY")
     }
 }
+
 extension SearchCardsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
@@ -67,36 +78,51 @@ extension SearchCardsViewController: UICollectionViewDelegateFlowLayout {
 
 extension SearchCardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return flashCardSearch.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCollectionCell", for: indexPath) as? SearchCollectionCell else {
             fatalError("Could not downcast to SearchCollectionCell" )}
-        //TODO: Make sure this works once model is done
         let myFlashCard = flashCardSearch[indexPath.row]
-        
-        //TODO: Finish step 4 of delegate here and call it
         cell.configureCell(for: myFlashCard)
         cell.backgroundColor = .white
-        //was fixed by compiler
-        cell.delegate = self as? SavedFlashCardCellDelegate
+        cell.delegate = self
         return cell
     }
-    
-    
 }
 
 extension SearchCardsViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("THIS IS JUST A TEST \(searchBar.searchTextField.text)")
-        guard searchBar.text != nil else {
-            //if its empty we want to reload all the cards
-            //TODO: Fix searchbar keyboard
-            searchView.searchBar.resignFirstResponder()
-            return
+    //TODO: Does not search anything
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+    }
+}
+
+extension SearchCardsViewController: SavedFlashCardCellDelegate {
+    func didSelectMoreButton(_ savedFlashCards: SearchCollectionCell, flashCards: Cards) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let saveAction = UIAlertAction(title: "Save", style: .default) { alertAction in
+            self.saveFlashCard(flashCards: flashCards)
         }
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        present(alertController, animated: true)
     }
     
+    private func saveFlashCard(flashCards: Cards) {
+        guard let index = flashCardSearch.firstIndex(of: flashCards) else {
+            return
+        }
+        do {
+            try dataPersistence.createItem(flashCards)
+            DispatchQueue.main.async {
+                self.showAlert(title: "Flash Card Saved", message: "You successfully added this to your flash card collection! You may now find this flash card in your FlashCards tab.")
+            }
+        } catch {
+        }
+    }
 }
 

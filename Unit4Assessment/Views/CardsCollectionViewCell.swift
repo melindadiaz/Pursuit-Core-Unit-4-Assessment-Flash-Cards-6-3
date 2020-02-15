@@ -20,7 +20,7 @@ class CardsCollectionViewCell: UICollectionViewCell {
     
     private lazy var longPressedGesture : UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
-     gesture.addTarget(self, action: #selector(didLongPress(_:)))
+        gesture.addTarget(self, action: #selector(didLongPress(_:)))
         return gesture
     }()
     
@@ -83,45 +83,39 @@ class CardsCollectionViewCell: UICollectionViewCell {
         setUpFlashCardDetailTextFieldTwo()
     }
     
-    //TODO: Finish Gesture DIDLongPress and Animate func check saved cell
+    
     
     @objc private func moreButtonPressed(_ sender: UIButton) {
-        //TODO:Step3: Custom Protocol
         delegate?.didSelectMoreButton(self, flashCards: currentFlashCards)
-        
-        //MARK: Delete after
-        print("button was pressed for flashCards, This is just for TEST PURPOSES you delete it after")
-        
     }
+    
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
         guard currentFlashCards != nil else { return }
-        print("button was longpressed for flashCards, TEST PURPOSES")
         if gesture.state == .began || gesture.state == .changed {
             return
         }
-      
+        
         animate()
     }
-       
-       private func animate() {
-           let duration: Double = 1.0
-           print("animate ")
-           if isShowingDetails {
-               UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
-                   self.flashCardAnswerTitle.alpha = 1.0
+    
+    private func animate() {
+        let duration: Double = 1.0
+        print("animate ")
+        if isShowingDetails {
+            UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
+                self.flashCardAnswerTitle.alpha = 1.0
                 self.flashCardDetailTextFieldOne.alpha = 0.0
-                  
                 self.flashCardDetailTextFieldTwo.alpha = 0.0
-               }, completion: nil)
-           } else {
-               UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
-                   self.flashCardAnswerTitle.alpha = 0.0
+            }, completion: nil)
+        } else {
+            UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
+                self.flashCardAnswerTitle.alpha = 0.0
                 self.flashCardDetailTextFieldOne.alpha = 1.0
                 self.flashCardDetailTextFieldTwo.alpha = 1.0
-               }, completion: nil)
-           }
+            }, completion: nil)
+        }
         isShowingDetails.toggle()
-       }
+    }
     
     private func setUpMoreButtonConstraint() {
         addSubview(moreButton)
@@ -156,8 +150,6 @@ class CardsCollectionViewCell: UICollectionViewCell {
             flashCardDetailTextFieldOne.leadingAnchor.constraint(equalTo: leadingAnchor),
             flashCardDetailTextFieldOne.trailingAnchor.constraint(equalTo: trailingAnchor),
             flashCardDetailTextFieldOne.heightAnchor.constraint(equalToConstant: 100)
-            //TODO: Doublecheck the height of the textfields
-            
         ])
         
     }
@@ -172,16 +164,14 @@ class CardsCollectionViewCell: UICollectionViewCell {
             flashCardDetailTextFieldTwo.leadingAnchor.constraint(equalTo: leadingAnchor),
             flashCardDetailTextFieldTwo.trailingAnchor.constraint(equalTo: trailingAnchor),
             flashCardDetailTextFieldTwo.heightAnchor.constraint(equalToConstant: 100)
-            //TODO: Doublecheck the height of the textfields
-            
         ])
         
     }
     
     public func configureCell(for savedCards: Cards) {
         currentFlashCards = savedCards
-        flashCardAnswerTitle.text = savedCards.quizTitle
+        flashCardAnswerTitle.text = savedCards.cardTitle
         flashCardDetailTextFieldOne.text = savedCards.facts.first
         flashCardDetailTextFieldTwo.text = savedCards.facts.last
-      }
+    }
 }

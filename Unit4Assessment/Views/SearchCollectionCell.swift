@@ -39,6 +39,7 @@ class SearchCollectionCell: UICollectionViewCell {
         label.text = "What is a FlashCard?"
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
+        label.alpha = 1.0
         return label
     }()
     
@@ -48,6 +49,7 @@ class SearchCollectionCell: UICollectionViewCell {
         textView.text = "This is where the first detail is"
         textView.isUserInteractionEnabled = true
         textView.backgroundColor = .systemYellow
+        textView.alpha = 0.0
         return textView
     }()
     
@@ -57,6 +59,7 @@ class SearchCollectionCell: UICollectionViewCell {
         textView.text = "This is where the second detail is"
         textView.isUserInteractionEnabled = true
         textView.backgroundColor = .systemTeal
+        textView.alpha = 0.0
         return textView
     }()
     
@@ -83,28 +86,19 @@ class SearchCollectionCell: UICollectionViewCell {
     
     
        @objc private func moreButtonPressed(_ sender: UIButton) {
-           //TODO:Step3: Custom Protocol
-        
         delegate?.didSelectMoreButton(self, flashCards: searchedCard)
-           //MARK: Delete after
-           print("button was pressed for flashCards, This is just for TEST PURPOSES you delete it after")
-           
        }
     
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
         guard searchedCard != nil else { return }
-        print("button was longpressed for flashCards, TEST PURPOSES ")
-                 
         if gesture.state == .began || gesture.state == .changed {
             return
         }
-        isShowingDetails.toggle()
         animate()
     }
        
        private func animate() {
            let duration: Double = 1.0
-           print("animate ")
            if isShowingDetails {
                UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
                    self.flashCardAnswerTitle.alpha = 1.0
@@ -119,7 +113,9 @@ class SearchCollectionCell: UICollectionViewCell {
                 self.flashCardDetailTextFieldTwo.alpha = 1.0
                }, completion: nil)
            }
+         isShowingDetails.toggle()
        }
+    
        private func setUpMoreButtonConstraint() {
            addSubview(moreButton)
            moreButton.translatesAutoresizingMaskIntoConstraints = false
@@ -153,8 +149,6 @@ class SearchCollectionCell: UICollectionViewCell {
                flashCardDetailTextFieldOne.leadingAnchor.constraint(equalTo: leadingAnchor),
                flashCardDetailTextFieldOne.trailingAnchor.constraint(equalTo: trailingAnchor),
                flashCardDetailTextFieldOne.heightAnchor.constraint(equalToConstant: 100)
-            
-               
            ])
            
        }
@@ -169,15 +163,12 @@ class SearchCollectionCell: UICollectionViewCell {
                flashCardDetailTextFieldTwo.leadingAnchor.constraint(equalTo: leadingAnchor),
                flashCardDetailTextFieldTwo.trailingAnchor.constraint(equalTo: trailingAnchor),
                flashCardDetailTextFieldTwo.heightAnchor.constraint(equalToConstant: 100)
-               
-               
            ])
-           
        }
     
     public func configureCell(for savedCards: Cards) {
       searchedCard = savedCards
-      flashCardAnswerTitle.text = savedCards.quizTitle
+      flashCardAnswerTitle.text = savedCards.cardTitle
       flashCardDetailTextFieldOne.text = savedCards.facts.first
       flashCardDetailTextFieldTwo.text = savedCards.facts.last
     }

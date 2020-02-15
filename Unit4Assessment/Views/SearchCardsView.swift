@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchCardsView: UIView {
-
+    
     public lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
         //has the user use only lowercased if they typed capital case
@@ -19,14 +19,13 @@ class SearchCardsView: UIView {
     }()
     
     public lazy var collectionView: UICollectionView = {
-           let layout = UICollectionViewFlowLayout()
-           layout.scrollDirection = .vertical
-           let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-           //this is more for the collectionview and tableview background more like a cream grey color and good for darkmode
-           cv.backgroundColor = .systemGroupedBackground
-           return cv
-       }()
-
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.backgroundColor = .systemGroupedBackground
+        return cv
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -40,7 +39,7 @@ class SearchCardsView: UIView {
     private func commonInit() {
         setUpSearchBarConstraints()
         setupCollectionViewConstraints()
-     
+        
     }
     
     private func setUpSearchBarConstraints() {
@@ -64,12 +63,6 @@ class SearchCardsView: UIView {
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-        
-        
         ])
-        
-    
     }
-    
-    
 }

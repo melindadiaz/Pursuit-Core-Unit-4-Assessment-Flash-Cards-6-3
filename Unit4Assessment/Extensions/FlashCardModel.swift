@@ -14,14 +14,14 @@ struct FlashCards: Codable & Equatable {
 
 struct Cards: Codable & Equatable {
     let id: String
-    let quizTitle: String
+    let cardTitle: String
     let facts: [String]
 }
 
 //MARK: You may not need this
-extension FlashCards {
-    static func getCards() -> [FlashCards] {
-        var flashcards = [FlashCards]()
+extension Cards {
+    static func getCards() -> [Cards] {
+        var flashcards = [Cards]()
         
         guard let fileURL = Bundle.main.url(forResource: "flashCards", withExtension: "json") else {
             fatalError("could not locate json file")
@@ -29,7 +29,7 @@ extension FlashCards {
         do {
             let data = try Data(contentsOf: fileURL)
             
-            let flashcardData = try JSONDecoder().decode(FlashCards.self, from: data)
+            let flashcardData = try JSONDecoder().decode(Cards.self, from: data)
             flashcards = [flashcardData]
         } catch {
             fatalError("failed to load contents \(error)")

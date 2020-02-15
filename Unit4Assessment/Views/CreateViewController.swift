@@ -10,11 +10,9 @@ import UIKit
 import DataPersistence
 
 class CreateViewController: UIViewController {
-    //TODO: Fix bar button problem
-    //TODO: CustomDelegate here!!
+    
     public var dataPersistence: DataPersistence<Cards>!
     public var createFlashcards: Cards?
-    
     private let createdView = CreateView()
     private var placeHolder = "BACK OF CARD: Details or Answer here."
     
@@ -36,26 +34,28 @@ class CreateViewController: UIViewController {
         navigationItem.title = "Create Custom Flashcards"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveCreatedFlashCardButtonPressed(_:)))
     }
-    
+    //TODO customFlashCardRequirements don't work
     private func customFlashCardRequirements() -> Bool {
         if ((createdView.flashCardAnswer.text) == nil) && ((createdView.flashCardDetailOne.text) == nil) && createdView.flashCardDetailTwo.text?.isEmpty == true {
-            showAlert(title: "Not Successful", message: "You need to fill all fields in order to create a custom flash card.")
+            DispatchQueue.main.async {
+                self.showAlert(title: "Not Successful", message: "You need to fill all fields in order to create a custom flash card.")
+            }
             return false
         } else {
-            showAlert(title: "Added to Favorites", message: "You successfully added this to your favorites! You may now find this flash card in your FlashCard tab")
+            showAlert(title: "Added this Flash Card", message: "You successfully added this to your flash card collection! You may now find this flash card in your FlashCards tab below")
             return true
         }
     }
-    //TODO: Fix this barButton problem
+    
     @objc func saveCreatedFlashCardButtonPressed(_ sender: UIBarButtonItem) {
         if customFlashCardRequirements() {
             do {
                 //methodwise initializer
-                let flashcard = Cards(id: "", quizTitle: createdView.flashCardAnswer.text ?? "", facts: [ createdView.flashCardDetailOne.text, createdView.flashCardDetailTwo.text])
+                let flashcard = Cards(id: "", cardTitle: createdView.flashCardAnswer.text ?? "", facts: [ createdView.flashCardDetailOne.text, createdView.flashCardDetailTwo.text])
                 try dataPersistence.createItem(flashcard)
                 
             } catch {
-                print("blah")
+                
             }
         }
         
@@ -64,9 +64,6 @@ class CreateViewController: UIViewController {
 
 extension CreateViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        //TODO: Should I put data persistence here??
-        //Lets Hope this gets rid of the keyboard
         textField.resignFirstResponder()
     }
 }
@@ -98,13 +95,10 @@ extension CreateViewController: UITextViewDelegate {
     
 }
 extension CreateViewController: DataPersistenceDelegate {
-    //Its listening if an item gets saved then this function gets calledd
+    
     func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        print("item was saved")
-        
     }
-    //its listening to changes in deletion
+    
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        print("item was deleted, THIS IS FOR TEST PURPOSES ONLY")
     }
 }

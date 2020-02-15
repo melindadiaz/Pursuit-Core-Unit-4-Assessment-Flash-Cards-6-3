@@ -33,6 +33,8 @@ class FlashTabBarController: UITabBarController {
     
     private lazy var searchCardsVC: SearchCardsViewController = {
         let vc = SearchCardsViewController()
+        vc.dataPersistence = dataPersistence
+        vc.dataPersistence.delegate = vc
         vc.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
         return vc
     }()
@@ -40,10 +42,5 @@ class FlashTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewControllers = [UINavigationController(rootViewController: cardsVC), UINavigationController(rootViewController:createVC), UINavigationController(rootViewController:searchCardsVC)]
-        
     }
-    
-    
-    
-    
 }

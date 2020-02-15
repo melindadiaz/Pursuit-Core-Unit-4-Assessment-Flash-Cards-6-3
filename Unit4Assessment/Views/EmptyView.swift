@@ -44,8 +44,7 @@ class EmptyView: UIView {
         setUpMessageLabelConstraints()
         setUpTitleLabelConstraints()
     }
-    
-    
+
     private func setUpMessageLabelConstraints() {
         addSubview(messageLabel)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +67,4 @@ class EmptyView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
     }
-    
-    
 }

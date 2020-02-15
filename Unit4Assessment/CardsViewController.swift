@@ -8,15 +8,11 @@
 
 import UIKit
 import DataPersistence
-
+//TODO: fix searchbar, CreateCustomRequirements AND basic UI esthetics needed
 class CardsViewController: UIViewController {
     
     private let cardsView = CardsView()
-    
-    //Step4: Instance of dataPersistence
     public var dataPersistence: DataPersistence<Cards>!
-    
-    //TODO: See if Data Persistence works Test to see your didSet gets called
     private var myFlashCards = [Cards]() {
         didSet{
             cardsView.collectionView.reloadData()
@@ -44,9 +40,9 @@ class CardsViewController: UIViewController {
         cardsView.collectionView.dataSource = self
         cardsView.collectionView.delegate = self
         cardsView.searchBar.delegate = self
-        //this is showing changes and it will listen for the changes
         dataPersistence.delegate = self
         fetchSavedFlashCards()
+        navigationItem.title = "Your Saved FlashCards"
     }
     
     private func fetchSavedFlashCards() {
@@ -54,7 +50,6 @@ class CardsViewController: UIViewController {
             myFlashCards = try dataPersistence.loadItems()
         } catch {
             showAlert(title: "Error", message: "Could not load cards!")
-            print("Cannot load flashcards \(error)")
         }
     }
 }
@@ -68,27 +63,21 @@ extension CardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardsCollectionViewCell", for: indexPath) as? CardsCollectionViewCell else {
             fatalError("Could not downcast to CardsCollectionViewCell" )}
-        
         let myFlashCard = myFlashCards[indexPath.row]
-        
-        //TODO:Finish step 4 of delegate here and call it
         cell.configureCell(for: myFlashCard)
         cell.backgroundColor = .white
-        //cell.delegate = self
+        cell.delegate = self
         return cell
     }
 }
 
 extension CardsViewController: DataPersistenceDelegate {
-    //Its listening if an item gets saved then this function gets called
     func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        print("item was saved")
         fetchSavedFlashCards()
     }
-    //its listening to changes in deletion
+    
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
         fetchSavedFlashCards()
-        print("item was deleted, THIS IS FOR TEST PURPOSES ONLY")
     }
 }
 
@@ -111,38 +100,38 @@ extension CardsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension CardsViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("THIS IS JUST A TEST \(searchBar.searchTextField.description)")
-        guard !searchText.isEmpty else {
-            fetchSavedFlashCards()
-            return
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //TODO: Fix so that searchBar is empty the keyboard goes Away
+        if searchBar.text?.isEmpty == true {
+            cardsView.collectionView.reloadData()
+            searchBar.resignFirstResponder()
         }
+        searchBar.resignFirstResponder()
     }
 }
 
 extension CardsViewController: SavedFlashCardDelegate {
     func didSelectMoreButton(_ savedFlashCards: CardsCollectionViewCell, flashCards: Cards) {
-         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-               let deleteAction = UIAlertAction(title: "Delete?", style: .destructive) { alertAction in
-                self.deleteFlashCard(flashCards: flashCards)
-                   //write a delete Helper function
-               }
-               alertController.addAction(cancelAction)
-               alertController.addAction(deleteAction)
-               present(alertController, animated: true)
-           }
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Delete?", style: .destructive) { alertAction in
+            self.deleteFlashCard(flashCards: flashCards)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true)
+    }
     
     private func deleteFlashCard(flashCards: Cards) {
         guard let thisIndex = myFlashCards.firstIndex(of: flashCards) else {
             return
         }
         do {
-            //deletes from documents directory
             try dataPersistence.deleteItem(at: thisIndex)
+            DispatchQueue.main.async {
+                self.showAlert(title: "Deleted", message: "You deleted this successfully")
+            }
         } catch {
-           
-            print("error deleting flashCard: \(error) For TEST purposes only must delete after")
         }
     }
 }
